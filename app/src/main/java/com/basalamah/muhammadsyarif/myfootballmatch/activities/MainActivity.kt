@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.basalamah.muhammadsyarif.myfootballmatch.R
 import com.basalamah.muhammadsyarif.myfootballmatch.fragments.FavouriteFragment
+import com.basalamah.muhammadsyarif.myfootballmatch.fragments.MatchFragment
 import com.basalamah.muhammadsyarif.myfootballmatch.fragments.NextFragment
 import com.basalamah.muhammadsyarif.myfootballmatch.fragments.PastFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         var fragment: Fragment? =null
         when (item.itemId) {
             R.id.navigation_home -> {
-                fragment = NextFragment()
+                fragment = MatchFragment()
             }
             R.id.navigation_dashboard -> {
                 fragment = PastFragment()
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadFragment(NextFragment())
+        loadFragment(MatchFragment())
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 

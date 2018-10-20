@@ -38,19 +38,21 @@ class MainActivityTest {
 
     @Test
     fun PastMatch() {
-        Thread.sleep(5000)
-        onView(withId(R.id.navigation_dashboard)).perform(click())
-        Thread.sleep(5000)
-        onView(withId(R.id.rvPast)).run {
-            Thread.sleep(3000)
-            perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        for(i in 0..20) {
+
+            Thread.sleep(5000)
+            onView(withId(R.id.navigation_dashboard)).perform(click())
+            //Thread.sleep(5000)
+            onView(withId(R.id.rvPast)).run {
+                Thread.sleep(3000)
+                perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+            }
+            Thread.sleep(5000)
+            onView(withId(R.id.ic_fav)).perform(click())
+            Thread.sleep(1000)
+            pressBack()
+            onView(withId(R.id.navigation_favorite)).perform(click())
+            onView(withId(R.id.rvFav)).check(matches(isDisplayed()))
         }
-        Thread.sleep(5000)
-        onView(withId(R.id.ic_fav)).perform(click())
-        Thread.sleep(1000)
-        pressBack()
-        onView(withId(R.id.navigation_favorite)).perform(click())
-        Thread.sleep(2000)
-        onView(withId(R.id.rvFav)).check(matches(isDisplayed()))
     }
 }
