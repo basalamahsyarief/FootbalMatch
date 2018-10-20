@@ -38,24 +38,6 @@ class PastFragment : Fragment(), EventNextView {
         rvPast.adapter = adapter
         rvPast.layoutManager = LinearLayoutManager(context)
     }
-//    private fun getData(){
-//        MyApplication.api.getPastLeague().enqueue(object : Callback<EventListResp> {
-//            override fun onFailure(call: Call<EventListResp>?, t: Throwable?) {
-//                Log.e(tag, t?.message)
-//            }
-//
-//            override fun onResponse(call: Call<EventListResp>?, response: Response<EventListResp>?) {
-//                Log.i(tag, "${Gson().toJsonTree(response?.body())}")
-//                val nEventList = response?.body()?.listEvent
-//                nEventList?.let {
-//                    evenList.addAll(it)
-//                    adapter.notifyDataSetChanged()
-//                }
-//            }
-//
-//        })
-//    }
-
     override fun showEventList(event: List<EventResponse>?) {
         event?.let {
             evenList.addAll(event)

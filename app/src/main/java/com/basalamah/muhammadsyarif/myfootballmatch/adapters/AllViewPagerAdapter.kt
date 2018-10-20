@@ -14,6 +14,9 @@ class AllViewPagerAdapter(fragment: FragmentManager):FragmentPagerAdapter(fragme
     override fun getCount(): Int {
         return fragments.size
     }
+    override fun getPageTitle(position: Int): CharSequence? {
+        return titles[position]
+    }
     fun addFragment(fragment: Fragment,title:String){
         fragments.add(fragment)
         titles.add(title)

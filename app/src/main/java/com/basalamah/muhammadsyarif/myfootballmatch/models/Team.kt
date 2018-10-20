@@ -1,10 +1,13 @@
 package com.basalamah.muhammadsyarif.myfootballmatch.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class TeamListResp(
         var teams:List<TeamResponse>?=null
 )
+@Parcelize
 data class TeamResponse(
         @SerializedName("idLeague")
         var idLeague: String?,
@@ -62,4 +65,4 @@ data class TeamResponse(
         var strTeamJersey: String?,
         @SerializedName("strTeamLogo")
         var strTeamLogo: String?
-)
+):Parcelable

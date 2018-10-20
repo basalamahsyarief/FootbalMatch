@@ -12,8 +12,8 @@ import retrofit2.Response
 
 class TeamPresenter(private val view:TeamView) {
 
-    fun getTeamList(){
-        MyApplication.api.getListTeams("4328").enqueue(object : Callback<TeamListResp>{
+    fun getTeamList(idEvent:String){
+        MyApplication.api.getListTeams(idEvent).enqueue(object : Callback<TeamListResp>{
             override fun onFailure(call: Call<TeamListResp>, t: Throwable) {
                 Log.i("TAG", t.message)
             }

@@ -5,10 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.basalamah.muhammadsyarif.myfootballmatch.R
-import com.basalamah.muhammadsyarif.myfootballmatch.fragments.FavouriteFragment
-import com.basalamah.muhammadsyarif.myfootballmatch.fragments.MatchFragment
-import com.basalamah.muhammadsyarif.myfootballmatch.fragments.NextFragment
-import com.basalamah.muhammadsyarif.myfootballmatch.fragments.PastFragment
+import com.basalamah.muhammadsyarif.myfootballmatch.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,12 +18,11 @@ class MainActivity : AppCompatActivity() {
                 fragment = MatchFragment()
             }
             R.id.navigation_dashboard -> {
-                fragment = PastFragment()
+                fragment = TeamsFragment()
             }
             R.id.navigation_favorite ->{
                 fragment = FavouriteFragment()
             }
-
         }
         return@OnNavigationItemSelectedListener loadFragment(fragment)
     }
