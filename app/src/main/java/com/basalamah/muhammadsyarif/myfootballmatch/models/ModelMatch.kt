@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class EventListResp(
         val events:List<EventResponse>?=null
 )
-data class TeamResponse(
+data class TeamBadges(
         @field:SerializedName("teams")
         val listTeams:List<badgeResponse>?=null
 )

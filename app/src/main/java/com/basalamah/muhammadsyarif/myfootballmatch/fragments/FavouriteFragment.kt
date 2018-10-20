@@ -11,6 +11,7 @@ import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
 import com.basalamah.muhammadsyarif.myfootballmatch.presenters.Presenter
 import com.basalamah.muhammadsyarif.myfootballmatch.R
 import com.basalamah.muhammadsyarif.myfootballmatch.adapters.EventAdapter
+import com.basalamah.muhammadsyarif.myfootballmatch.presenters.FavouritePresenter
 import com.basalamah.muhammadsyarif.myfootballmatch.view.EventNextView
 import kotlinx.android.synthetic.main.fragment_favourite.*
 
@@ -20,11 +21,11 @@ class FavouriteFragment : Fragment(), EventNextView {
 
     private val eventList = mutableListOf<EventResponse>()
     private lateinit var adapter: EventAdapter
-    private lateinit var presenter: Presenter
+    private lateinit var presenter: FavouritePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = Presenter(this)
+        presenter = FavouritePresenter(this)
         adapter = EventAdapter(eventList)
         presenter.getFavouriteList(context)
     }

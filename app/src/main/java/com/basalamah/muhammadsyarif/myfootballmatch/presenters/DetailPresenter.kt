@@ -5,7 +5,7 @@ import android.util.Log.e
 import android.util.Log.i
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventListResp
 import com.basalamah.muhammadsyarif.myfootballmatch.MyApplication
-import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamResponse
+import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamBadges
 import com.basalamah.muhammadsyarif.myfootballmatch.view.DetailView
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,12 +27,12 @@ class DetailPresenter(private val event: DetailView) {
         })
     }
     fun getDataImage(name:String, team:String){
-        MyApplication.api.getBadge(name).enqueue(object : Callback<TeamResponse>{
-            override fun onFailure(call: Call<TeamResponse>?, t: Throwable?) {
+        MyApplication.api.getBadge(name).enqueue(object : Callback<TeamBadges>{
+            override fun onFailure(call: Call<TeamBadges>?, t: Throwable?) {
                 Log.i("TAG", t?.message)
             }
 
-            override fun onResponse(call: Call<TeamResponse>?, response: Response<TeamResponse>?) {
+            override fun onResponse(call: Call<TeamBadges>?, response: Response<TeamBadges>?) {
                 if(team.equals("home")){
                     event.showBadgeHome(response?.body())
                 }else{

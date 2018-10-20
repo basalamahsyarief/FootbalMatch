@@ -10,7 +10,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.basalamah.muhammadsyarif.myfootballmatch.*
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
-import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamResponse
+import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamBadges
 import com.basalamah.muhammadsyarif.myfootballmatch.presenters.DetailPresenter
 import com.basalamah.muhammadsyarif.myfootballmatch.view.DetailView
 import com.squareup.picasso.Picasso
@@ -87,7 +87,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
         response = detail
         Toast.makeText(this,response.toString(),Toast.LENGTH_LONG).show()
     }
-    override fun showBadgeHome(teamHomeResponse: TeamResponse?) {
+    override fun showBadgeHome(teamHomeResponse: TeamBadges?) {
 
         Picasso.get().load(teamHomeResponse?.listTeams?.get(0)?.badge).into(ivHome)
     }
@@ -128,7 +128,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
             if (!fav.isEmpty()) isExisted = true
         }
     }
-    override fun showBadgeAway(teamAwayResponse: TeamResponse?) {
+    override fun showBadgeAway(teamAwayResponse: TeamBadges?) {
         Picasso.get().load(teamAwayResponse?.listTeams?.get(0)?.badge).into(ivAway)
     }
 }

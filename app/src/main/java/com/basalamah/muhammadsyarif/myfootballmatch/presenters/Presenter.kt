@@ -33,13 +33,6 @@ class Presenter(private val view: EventNextView){
         })
     }
 
-    fun getFavouriteList(context: Context?){
-        context?.database?.use {
-            val fav = select(EventResponse.TABLE)
-                    .parseList(classParser<EventResponse>())
-            view.showEventList(fav)
-        }
-    }
 
     fun getDataPast(){
         MyApplication.api.getPastLeague().enqueue(object : Callback<EventListResp> {
