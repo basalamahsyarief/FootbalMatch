@@ -1,6 +1,7 @@
 package com.basalamah.muhammadsyarif.myfootballmatch
 
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventListResp
+import com.basalamah.muhammadsyarif.myfootballmatch.models.PlayerListResp
 import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamBadges
 import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamListResp
 import retrofit2.Call
@@ -19,4 +20,6 @@ interface Api {
     fun getDetailEvent(@Query("id")idEvent:String):Call<EventListResp>
     @POST("lookup_all_teams.php")
     fun getListTeams(@Query("id")idEvent:String):Call<TeamListResp>
+    @GET("lookup_all_players.php")
+    fun getPlayers(@Query("id") id:String?) : Call<PlayerListResp>
 }

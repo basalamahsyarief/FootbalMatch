@@ -41,21 +41,4 @@ class NextFragment : Fragment(), EventNextView {
         event?.let { evenList.addAll(it) }
         adapter.notifyDataSetChanged()
     }
-//    private fun getData(){
-//        MyApplication.api.getNextLeague().enqueue(object : Callback<EventListResp>{
-//            override fun onFailure(call: Call<EventListResp>?, t: Throwable?) {
-//                e(tag,t?.message)
-//            }
-//
-//            override fun onResponse(call: Call<EventListResp>?, response: Response<EventListResp>?) {
-//                i(tag,"${Gson().toJsonTree(response?.body())}")
-//                val nEventList = response?.body()?.listEvent
-//                nEventList?.let {
-//                    evenList.addAll(it)
-//                    adapter.notifyDataSetChanged()
-//                }
-//            }
-//
-//        })
-//    }
 }

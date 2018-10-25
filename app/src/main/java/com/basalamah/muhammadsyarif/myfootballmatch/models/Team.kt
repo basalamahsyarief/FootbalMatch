@@ -17,44 +17,13 @@ data class TeamResponse(
         var idTeam: String,
         @SerializedName("intFormedYear")
         var intFormedYear: String?,
-        @SerializedName("intLoved")
-        var intLoved: String?,
-        @SerializedName("intStadiumCapacity")
-        var intStadiumCapacity: String?,
-        @SerializedName("strAlternate")
         var strAlternate: String?,
         @SerializedName("strCountry")
         var strCountry: String?,
         @SerializedName("strDescriptionEN")
         var strDescriptionEN: String?,
-        @SerializedName("strDivision")
-        var strDivision: String?,
-        @SerializedName("strFacebook")
-        var strFacebook: String?,
-        @SerializedName("strGender")
-        var strGender: String?,
-        @SerializedName("strInstagram")
-        var strInstagram: String?,
-        @SerializedName("strKeywords")
-        var strKeywords: String?,
-        @SerializedName("strLeague")
-        var strLeague: String?,
-        @SerializedName("strLocked")
-        var strLocked: String?,
-        @SerializedName("strManager")
-        var strManager: String?,
-        @SerializedName("strRSS")
-        var strRSS: String?,
-        @SerializedName("strSport")
-        var strSport: String?,
         @SerializedName("strStadium")
         var strStadium: String?,
-        @SerializedName("strStadiumDescription")
-        var strStadiumDescription: String?,
-        @SerializedName("strStadiumLocation")
-        var strStadiumLocation: String?,
-        @SerializedName("strStadiumThumb")
-        var strStadiumThumb: String?,
         @SerializedName("strTeam")
         var strTeam: String?,
         @SerializedName("strTeamBadge")
@@ -66,3 +35,46 @@ data class TeamResponse(
         @SerializedName("strTeamLogo")
         var strTeamLogo: String?
 ):Parcelable
+
+data class PlayerListResp(
+        var player:List<PlayerResponse>?=null
+)
+@Parcelize
+data class PlayerResponse(
+        @SerializedName("dateBorn")
+        var dateBorn: String?,
+        @SerializedName("dateSigned")
+        var dateSigned: String?,
+        @SerializedName("idPlayer")
+        var idPlayer: String,
+        @SerializedName("idPlayerManager")
+        var idPlayerManager: String?,
+        @SerializedName("idTeam")
+        var idTeam: String?,
+        @SerializedName("strBirthLocation")
+        var strBirthLocation: String?,
+        @SerializedName("strCollege")
+        var strCollege: String?,
+        @SerializedName("strCutout")
+        var strCutout: String?,
+        @SerializedName("strDescriptionEN")
+        var strDescriptionEN: String?,
+        @SerializedName("strHeight")
+        var strHeight: String?,
+        @SerializedName("strNationality")
+        var strNationality: String?,
+        @SerializedName("strPlayer")
+        var strPlayer: String?,
+        @SerializedName("strPosition")
+        var strPosition: String?,
+        @SerializedName("strSigning")
+        var strSigning: String?,
+        @SerializedName("strTeam")
+        var strTeam: String?,
+        @SerializedName("strThumb")
+        var strThumb: String?,
+        @SerializedName("strWeight")
+        var strWeight: String?,
+        @SerializedName("strFanart1")
+        var strFanart1: String?
+): Parcelable

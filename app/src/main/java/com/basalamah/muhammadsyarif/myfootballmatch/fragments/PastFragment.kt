@@ -40,7 +40,7 @@ class PastFragment : Fragment(), EventNextView {
     }
     override fun showEventList(event: List<EventResponse>?) {
         event?.let {
-            evenList.addAll(event)
+            evenList.addAll(it)
             adapter.notifyDataSetChanged()
         }
     }
