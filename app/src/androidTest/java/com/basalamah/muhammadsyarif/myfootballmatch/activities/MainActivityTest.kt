@@ -3,6 +3,7 @@ package com.basalamah.muhammadsyarif.myfootballmatch.activities
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.pressBack
 import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.swipeLeft
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -23,7 +24,7 @@ class MainActivityTest {
     var activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun NextMatch() {
+    fun nextMatch() {
         Thread.sleep(5000)
         onView(withId(R.id.rvNext)).run {
             Thread.sleep(5000)
@@ -37,22 +38,19 @@ class MainActivityTest {
     }
 
     @Test
-    fun PastMatch() {
-        for(i in 0..20) {
-
-            Thread.sleep(5000)
-            onView(withId(R.id.navigation_dashboard)).perform(click())
-            //Thread.sleep(5000)
-            onView(withId(R.id.rvPast)).run {
-                Thread.sleep(3000)
-                perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-            }
-            Thread.sleep(5000)
-            onView(withId(R.id.ic_fav)).perform(click())
-            Thread.sleep(1000)
-            pressBack()
-            onView(withId(R.id.navigation_favorite)).perform(click())
-            onView(withId(R.id.rvFav)).check(matches(isDisplayed()))
+    fun teams() {
+        Thread.sleep(5000)
+        onView(withId(R.id.navigation_dashboard)).perform(click())
+        onView(withId(R.id.rvTeams)).run {
+            Thread.sleep(3000)
+            perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         }
+        Thread.sleep(5000)
+        onView(withId(R.id.ic_fav)).perform(click())
+        Thread.sleep(1000)
+        pressBack()
+        onView(withId(R.id.navigation_favorite)).perform(click())
+        onView(withId(R.id.main_content_match)).perform(swipeLeft())
+        onView(withId(R.id.rvFavTeams)).check(matches(isDisplayed()))
     }
 }

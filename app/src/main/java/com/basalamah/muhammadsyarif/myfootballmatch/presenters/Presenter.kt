@@ -16,8 +16,8 @@ import retrofit2.Response
 
 class Presenter(private val view: EventNextView){
 
-    fun getDataEventNext(){
-        MyApplication.api.getNextLeague().enqueue(object : Callback<EventListResp> {
+    fun getDataEventNext(id:String){
+        MyApplication.api.getNextLeague(id).enqueue(object : Callback<EventListResp> {
             override fun onFailure(call: Call<EventListResp>?, t: Throwable?) {
                 Log.e("TAG", t?.message)
             }
@@ -32,14 +32,11 @@ class Presenter(private val view: EventNextView){
 
         })
     }
-
-
     fun getDataPast(){
-        MyApplication.api.getPastLeague().enqueue(object : Callback<EventListResp> {
+        MyApplication.api.getPastLeague("4328").enqueue(object : Callback<EventListResp> {
             override fun onFailure(call: Call<EventListResp>?, t: Throwable?) {
                 Log.e("TAG", t?.message)
             }
-
             override fun onResponse(call: Call<EventListResp>?, response: Response<EventListResp>?) {
                 Log.i("TAG", "${Gson().toJsonTree(response?.body())}")
                 val nEventList = response?.body()?.events

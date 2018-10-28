@@ -12,8 +12,8 @@ import retrofit2.Response
 
 class TeamPresenter(private val view:TeamView) {
 
-    fun getTeamList(idEvent:String){
-        MyApplication.api.getListTeams(idEvent).enqueue(object : Callback<TeamListResp>{
+    fun getTeamList(idTeam:String){
+        MyApplication.api.getListTeams(idTeam).enqueue(object : Callback<TeamListResp>{
             override fun onFailure(call: Call<TeamListResp>, t: Throwable) {
                 Log.i("TAG", t.message)
             }
@@ -22,6 +22,21 @@ class TeamPresenter(private val view:TeamView) {
                 i("data","${Gson().toJsonTree(response.body())}")
                 val nTeamList = response.body()?.teams
                 nTeamList?.let {
+                    view.showTeam(it)
+                }
+            }
+
+        })
+    }
+    fun getTeam(idTeam: String?){
+        MyApplication.api.getTeam(idTeam).enqueue(object : Callback<TeamListResp>{
+            override fun onFailure(call: Call<TeamListResp>, t: Throwable) {
+                Log.i("TAG", t.message)
+            }
+
+            override fun onResponse(call: Call<TeamListResp>, response: Response<TeamListResp>) {
+                val nTeam = response.body()?.teams
+                nTeam?.let {
                     view.showTeam(it)
                 }
             }

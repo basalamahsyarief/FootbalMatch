@@ -7,6 +7,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.SearchView
 
 import com.basalamah.muhammadsyarif.myfootballmatch.R
 import com.basalamah.muhammadsyarif.myfootballmatch.adapters.TeamsAdapter
@@ -23,7 +25,6 @@ class TeamsFragment : Fragment(),TeamView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = TeamPresenter(this)
-        presenter.getTeamList("4328")
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,12 +35,54 @@ class TeamsFragment : Fragment(),TeamView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = TeamsAdapter(teamList)
+        spTeam.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val idLeague:String = when(position){
+                    0 -> "4328"
+                    1 -> "4331"
+                    2 -> "4332"
+                    3 -> "4334"
+                    4 -> "4337"
+                    else -> "4338"
+                }
+                presenter.getTeamList(idLeague)
+                setupView()
+            }
+
+        }
+        svTeams.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText == null || newText.trim().isEmpty()) {
+                    adapter = TeamsAdapter(teamList)
+                    setupView()
+                    return false;
+                }
+                val filteredList = ArrayList<TeamResponse>(teamList)
+                filteredList.filterNot {
+                    it.strTeam?.toLowerCase()!!.contains(newText.toLowerCase())
+                }.forEach { filteredList.remove(it) }
+                adapter = TeamsAdapter(filteredList)
+                setupView()
+                return false
+            }
+
+        })
+    }
+
+    private fun setupView(){
         rvTeams.adapter = adapter
         rvTeams.layoutManager = GridLayoutManager(context,2)
     }
 
     override fun showTeam(team: List<TeamResponse>) {
         team.let {
+            teamList.clear()
             teamList.addAll(it)
             adapter.notifyDataSetChanged()
         }

@@ -1,7 +1,6 @@
 package com.basalamah.muhammadsyarif.myfootballmatch.activities
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.basalamah.muhammadsyarif.myfootballmatch.R
 import com.basalamah.muhammadsyarif.myfootballmatch.models.PlayerResponse

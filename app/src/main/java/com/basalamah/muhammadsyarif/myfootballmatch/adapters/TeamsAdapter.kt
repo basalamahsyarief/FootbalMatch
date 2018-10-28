@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.team_items.view.*
 import org.jetbrains.anko.startActivity
 
 class TeamsAdapter(val listTeams:List<TeamResponse>): RecyclerView.Adapter<TeamsAdapter.Holder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.team_items,parent,false)
         return Holder(view)

@@ -7,8 +7,8 @@ import com.basalamah.muhammadsyarif.myfootballmatch.view.EventNextView
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 
-class FavouritePresenter(private val view:EventNextView) {
-    fun getFavouriteList(context: Context?){
+class FavouriteMatchPresenter(private val view:EventNextView) {
+    fun getFavouriteEvent(context: Context?){
         context?.database?.use {
             val fav = select(EventResponse.TABLE)
                     .parseList(classParser<EventResponse>())

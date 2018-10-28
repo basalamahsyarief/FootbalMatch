@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
 import com.basalamah.muhammadsyarif.myfootballmatch.presenters.Presenter
 import com.basalamah.muhammadsyarif.myfootballmatch.R
@@ -24,7 +25,6 @@ class PastFragment : Fragment(), EventNextView {
         super.onCreate(savedInstanceState)
         presenter = Presenter(this)
         presenter.getDataPast()
-
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,11 +35,38 @@ class PastFragment : Fragment(), EventNextView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = EventAdapter(evenList)
+        setupView()
+        svPast.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText == null || newText.trim().isEmpty()) {
+                    adapter = EventAdapter(evenList)
+                    setupView()
+                    return false;
+                }
+                val filteredList = ArrayList<EventResponse>(evenList)
+                filteredList.filterNot {
+                    it.strAwayTeam?.toLowerCase()!!.contains(newText.toLowerCase()) || it.strHomeTeam?.toLowerCase()!!.contains(newText.toLowerCase())
+                }.forEach { filteredList.remove(it) }
+                adapter = EventAdapter(filteredList)
+                setupView()
+                return false
+            }
+
+        })
+
+
+    }
+    private fun setupView(){
+
         rvPast.adapter = adapter
         rvPast.layoutManager = LinearLayoutManager(context)
     }
     override fun showEventList(event: List<EventResponse>?) {
         event?.let {
+            evenList.clear()
             evenList.addAll(it)
             adapter.notifyDataSetChanged()
         }

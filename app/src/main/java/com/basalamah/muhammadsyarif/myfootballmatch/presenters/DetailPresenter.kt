@@ -25,6 +25,7 @@ class DetailPresenter(private val event: DetailView) {
             }
 
         })
+
     }
     fun getDataImage(name:String, team:String){
         MyApplication.api.getBadge(name).enqueue(object : Callback<TeamBadges>{

@@ -40,11 +40,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_fav,menu)
         this.menu=menu
-        if (isExisted) {
-            this.menu?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp)
-        } else {
-           this.menu?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp)
-        }
+
         setFavorite()
         return super.onCreateOptionsMenu(menu)
     }

@@ -1,6 +1,8 @@
 package com.basalamah.muhammadsyarif.myfootballmatch.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class EventListResp(
         val events:List<EventResponse>?=null
@@ -13,6 +15,7 @@ data class badgeResponse(
         @field:SerializedName("strTeamBadge")
         val badge:String?=""
 )
+@Parcelize
 data class EventResponse(
         val id:Long?,
         val idEvent:String?="",
@@ -25,9 +28,9 @@ data class EventResponse(
         val strHomeYellowCards:String?="",
         val strAwayRedCards:String?="",
         val strAwayYellowCards:String?=""
-){
+):Parcelable{
         companion object {
-                const val TABLE = "TABLE_FAV"
+                const val TABLE = "TABLE_MATCH"
                 const val ID = "ID_"
                 const val EVENT_ID = "EVENT_ID"
                 const val EVENT_DATE = "EVENT_DATE"

@@ -9,32 +9,32 @@ data class TeamListResp(
 )
 @Parcelize
 data class TeamResponse(
-        @SerializedName("idLeague")
-        var idLeague: String?,
-        @SerializedName("idSoccerXML")
-        var idSoccerXML: String?,
-        @SerializedName("idTeam")
-        var idTeam: String,
-        @SerializedName("intFormedYear")
-        var intFormedYear: String?,
-        var strAlternate: String?,
-        @SerializedName("strCountry")
-        var strCountry: String?,
-        @SerializedName("strDescriptionEN")
-        var strDescriptionEN: String?,
-        @SerializedName("strStadium")
-        var strStadium: String?,
-        @SerializedName("strTeam")
-        var strTeam: String?,
-        @SerializedName("strTeamBadge")
-        var strTeamBadge: String,
-        @SerializedName("strTeamBanner")
-        var strTeamBanner: String?,
-        @SerializedName("strTeamJersey")
-        var strTeamJersey: String?,
-        @SerializedName("strTeamLogo")
-        var strTeamLogo: String?
-):Parcelable
+        val id:Long?,
+        val idTeam: String="",
+        val intFormedYear: String?="",
+        val strCountry: String?="",
+        val strDescriptionEN: String?="",
+        val strStadium: String?="",
+        val strTeam: String?="",
+        val strTeamBadge: String="",
+        val strTeamBanner: String?="",
+        val strTeamLogo: String?=""
+):Parcelable{
+    companion object {
+        const val TABLE = "TABLE_TEAM"
+        const val ID = "ID_"
+        const val ID_TEAM = "ID_TEAM"
+        const val INT_FORMED_YEAR = "INT_FORMED_YEAR"
+        const val STR_COUNTRY = "STR_COUNTRY"
+        const val STR_DESC_EN = "STR_DESC_EN"
+        const val STR_STADIUM = "STR_STADIUM"
+        const val STR_TEAM = "STR_TEAM"
+        const val STR_TEAM_BADGE="STR_TEAM_BADGE"
+        const val STR_TEAM_BANNER="STR_TEAM_BANNER"
+        const val STR_TEAM_LOGO = "STR_TEAM_LOGO"
+    }
+}
+
 
 data class PlayerListResp(
         var player:List<PlayerResponse>?=null
