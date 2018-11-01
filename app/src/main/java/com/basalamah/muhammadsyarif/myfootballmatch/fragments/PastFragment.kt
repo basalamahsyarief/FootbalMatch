@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.SearchView
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
 import com.basalamah.muhammadsyarif.myfootballmatch.presenters.Presenter
@@ -36,6 +37,24 @@ class PastFragment : Fragment(), EventNextView {
         super.onViewCreated(view, savedInstanceState)
         adapter = EventAdapter(evenList)
         setupView()
+        spPast.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val idLeague:String = when(position){
+                    0 -> "4328"
+                    1 -> "4331"
+                    2 -> "4332"
+                    3 -> "4334"
+                    4 -> "4337"
+                    else -> "4338"
+                }
+                presenter.getDataEventNext(idLeague)
+                setupView()
+            }
+
+        }
         svPast.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true

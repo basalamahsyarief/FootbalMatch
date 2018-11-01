@@ -38,6 +38,21 @@ class MainActivityTest {
     }
 
     @Test
+    fun pastMatch() {
+        Thread.sleep(5000)
+        onView(withId(R.id.main_content_match)).perform(swipeLeft())
+        onView(withId(R.id.rvPast)).run {
+            Thread.sleep(3000)
+            perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        }
+        Thread.sleep(5000)
+        onView(withId(R.id.ic_fav)).perform(click())
+        Thread.sleep(1000)
+        pressBack()
+        onView(withId(R.id.navigation_favorite)).perform(click())
+        onView(withId(R.id.rvFav)).check(matches(isDisplayed()))
+    }
+    @Test
     fun teams() {
         Thread.sleep(5000)
         onView(withId(R.id.navigation_dashboard)).perform(click())

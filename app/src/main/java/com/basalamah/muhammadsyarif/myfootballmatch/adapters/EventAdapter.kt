@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import com.basalamah.muhammadsyarif.myfootballmatch.activities.DetailActivity
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
 import com.basalamah.muhammadsyarif.myfootballmatch.R
+import com.basalamah.muhammadsyarif.myfootballmatch.Utils
 import kotlinx.android.synthetic.main.list_events.view.*
+import okhttp3.internal.Util
 import org.jetbrains.anko.intentFor
 
 class EventAdapter(val listEvent:List<EventResponse>): RecyclerView.Adapter<EventAdapter.Holder>() {
@@ -31,7 +33,7 @@ class EventAdapter(val listEvent:List<EventResponse>): RecyclerView.Adapter<Even
             itemView?.tvHome?.text = events.strHomeTeam
             itemView?.tvScoreHome?.text = events.intHomeScore
             itemView?.scoreAway?.text = events.intAwayScore
-            itemView?.tvTanggal?.text = events.dateEvent
+            itemView?.tvTanggal?.text = events.strDate?.let { events.strTime?.let { it1 -> Utils().GMT(it, it1) } }
             itemView?.linLay?.setOnClickListener {
                 itemView.context.startActivity(
                         itemView.context.intentFor<DetailActivity>(
@@ -40,7 +42,8 @@ class EventAdapter(val listEvent:List<EventResponse>): RecyclerView.Adapter<Even
                                 "homeTeam" to events.strHomeTeam,
                                 "awayScore" to events.intAwayScore,
                                 "homeScore" to events.intHomeScore,
-                                "dateEvent" to events.dateEvent
+                                "dateEvent" to events.strDate,
+                                "strTime" to events.strTime
 
                         )
                 )

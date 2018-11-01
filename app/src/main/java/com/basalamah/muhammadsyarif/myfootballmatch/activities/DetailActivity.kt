@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.basalamah.muhammadsyarif.myfootballmatch.*
 import com.basalamah.muhammadsyarif.myfootballmatch.models.EventResponse
 import com.basalamah.muhammadsyarif.myfootballmatch.models.TeamBadges
@@ -49,7 +48,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
         return when(item?.itemId){
             R.id.ic_fav -> {
                 if (isExisted) {
-                    RemoveMatchDB(this, response)
+                    removeMatchDB(this, response)
                 } else {
                     addMatchDB(response)
                 }
@@ -77,11 +76,10 @@ class DetailActivity : AppCompatActivity(), DetailView {
         tvAwayYellow.text = detail?.strAwayYellowCards
         tvHomeRed.text = detail?.strHomeRedCards
         tvAwayRed.text = detail?.strAwayRedCards
-        tvTanggal.text = intent.getStringExtra("dateEvent")
+        tvTanggal.text = Utils().GMT(intent.getStringExtra("dateEvent"), intent.getStringExtra("strTime"))
         scoreHome.text = intent.getStringExtra("homeScore")
         scoreAway.text = intent.getStringExtra("awayScore")
         response = detail
-        Toast.makeText(this,response.toString(),Toast.LENGTH_LONG).show()
     }
     override fun showBadgeHome(teamHomeResponse: TeamBadges?) {
 
@@ -93,7 +91,8 @@ class DetailActivity : AppCompatActivity(), DetailView {
             database.use {
                 insert(EventResponse.TABLE,
                         EventResponse.EVENT_ID to event?.idEvent,
-                        EventResponse.EVENT_DATE to event?.dateEvent,
+                        EventResponse.STR_DATE to event?.strDate,
+                        EventResponse.STR_TIME to event?.strTime,
                         EventResponse.HOME_TEAM to event?.strHomeTeam,
                         EventResponse.AWAY_TEAM to event?.strAwayTeam,
                         EventResponse.SCORE_HOME to event?.intHomeScore,
@@ -107,7 +106,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
             toast("${e.message}").show()
         }
     }
-    private fun RemoveMatchDB(context: Context, event: EventResponse?){
+    private fun removeMatchDB(context: Context, event: EventResponse?){
         try{
             context.database.use{
                 delete(EventResponse.TABLE,
